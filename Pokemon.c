@@ -2,6 +2,15 @@ void main() {
 
 }
 
+struct PokemonRoster {
+  // Need to change syntax
+  struct Pokemon *pokemon1;
+  struct Pokemon *pokemon2;
+  struct Pokemon *pokemon3;
+  struct Pokemon *pokemon4;
+  struct Pokemon *pokemon5;
+}
+
 struct Pokemon {
   char string[] name;
   int level;
@@ -12,7 +21,12 @@ struct Pokemon {
   int SpDef;
   int Spd;
   char Type;
-
+  bool Fainted;
+  // Need to change syntax
+  int (*calculateHpPtr)() = &calculateHp;
+  int (*calculateStatsPtr)() = &calculateStats;
+  int (*calculateModifierPtr)() = &calculateModifier;
+  int (*calculateReceivedDamagePtr)() = &calculateREceivedDamage;
 }
 
 int calculateHp(int base, int level) {
