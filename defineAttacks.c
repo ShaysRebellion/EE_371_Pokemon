@@ -2,6 +2,10 @@
 #include <string.h>
 #include <stdio.h>
 
+//this function defines all of the attacks that will be in the game
+//as we develop the game further we can add more attacks and play with
+//the values. Follow this format to add an attack, and update NUMATTACKS
+//in game_structs.h as we add more attacks.
 attack* defineAttacks(){
 	static attack allAttacks[NUMATTACKS];
 	
