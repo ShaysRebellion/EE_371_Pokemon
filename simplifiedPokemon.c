@@ -8,8 +8,14 @@ int main() {
 	allAttacks = defineAttacks();
 	pokemon* allPokemon;
 	allPokemon = definePokemon(allAttacks);
-	player* player;
-	player = definePlayer(allPokemon);
+	player* allPlayers;
+	allPlayers = definePlayers(allPokemon);
+
+	intializeConnection();
+
+	
+
+
 
 
 

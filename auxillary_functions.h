@@ -8,14 +8,12 @@ void send(char data) {
 	*TRANSMIT = 1;
 	*LOAD = 0;
 
-	while (!*CHARSENT) { // Potential infinite loop?
+	while (!*CHAR_SENT) { // Potential infinite loop?
 		continue;
 	}
 
 	*TRANSMIT = 0;
 }
-
-
 
 int receive() {
 	while (!*CHAR_RECEIVED) { // Potential infinite loop?
@@ -25,7 +23,16 @@ int receive() {
 	return *PARALLEL_RECEIVE;
 }
 
-
+void intializeConnection() {
+	bool connected;
+	connected = false;
+	while(!connected) {
+		send(1);
+		if (receive() == 1) {
+			break;
+		}
+	}
+}
 
 int attackCalculate(int attackDamage, int target) {
 
