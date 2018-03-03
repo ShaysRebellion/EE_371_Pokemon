@@ -24,6 +24,7 @@ struct attackStruct{
 struct pokemonStruct{
 	char name[MAXPOKEMONNAMESIZE];
 	attack* attacks;
+	int def;
 	int health;
 	int PP;
 	int numValue;
