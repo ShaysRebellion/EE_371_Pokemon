@@ -12,6 +12,6 @@ pokemon* definePokemon(attack* allAttacks){
 	charmander.PP = 10;
 	charmander.numValue = 0;
 	allPokemon[charmander.numValue] = charmander;
-
+	printf("%s\n", allPokemon[0].attacks[0].name);
 	return allPokemon;
 }
