@@ -11,14 +11,16 @@
 #define MAXPOKEMONNAMESIZE 100
 #define NUMATTACKS 4
 #define NUMPOKEMON 8
+#define POKEMONPARTYSIZE 2
 #define GAME_STRUCTS
 
 enum myBool { FALSE = 0, TRUE = 1};
 typedef enum myBool bool;
 
 struct playerStruct{
-	int pokemon;
-	int command;
+	pokemon* pokemonParty[POKEMONPARTYSIZE];
+	int whichPokemon;
+	// char command; ??
 	bool pokemonAlive;
 }; typedef struct playerStruct player;
 
