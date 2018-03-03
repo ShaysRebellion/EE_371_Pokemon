@@ -9,7 +9,7 @@
 
 #define MAXATTACKNAMESIZE 100
 #define MAXPOKEMONNAMESIZE 100
-#define NUMATTACKS 4
+#define NUMATTACKS 50
 #define NUMPOKEMON 8
 #define POKEMONPARTYSIZE 2
 #define GAME_STRUCTS
@@ -34,6 +34,7 @@ struct attackStruct{
 struct pokemonStruct{
 	char name[MAXPOKEMONNAMESIZE];
 	attack* attacks;
+	int def;
 	int health;
 	int PP;
 	int numValue;
