@@ -4,13 +4,13 @@
 
 int initialize();
 
-void send(int data);
+void send(char data);
 
-int receive();
+char receive();
 
 int attackCalculate(int attackDamage, int target);
 
-int updateHealth(pokemon* target); 
+int updateHealth(pokemon* target);
 
 attack* defineAttacks();
 

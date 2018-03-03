@@ -1,4 +1,7 @@
 #ifndef GAME_STRUCTS
+#define LOAD (volatile char*) 0x00011020
+#define PARALLEL (volatile char*) 0x0011020
+#define CHARSEND (volatile char*) 0x00011020 // Need send address. Address in processor.
 #define MAXATTACKNAMESIZE 100
 #define MAXPOKEMONNAMESIZE 100
 #define NUMATTACKS 4
