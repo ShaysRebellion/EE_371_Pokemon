@@ -1,7 +1,8 @@
 #ifndef GAME_STRUCTS
 #define MAXATTACKNAMESIZE 100
 #define MAXPOKEMONNAMESIZE 100
-#define NUMATTACKS 2
+#define NUMATTACKS 4
+#define NUMPOKEMON 8
 #define GAME_STRUCTS
 
 enum myBool { FALSE = 0, TRUE = 1};
@@ -23,7 +24,7 @@ struct attackStruct{
 struct pokemonStruct{
 	char name[MAXPOKEMONNAMESIZE];
 	attack* attacks;
-	int heatlh;
+	int health;
 	int PP;
 	int numValue;
 }; typedef struct pokemonStruct pokemon;

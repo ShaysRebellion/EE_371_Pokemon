@@ -1,0 +1,3 @@
+int updateHealth(pokemon* target){
+	
+}

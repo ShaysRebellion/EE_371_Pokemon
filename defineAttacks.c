@@ -21,7 +21,9 @@ attack* defineAttacks(){
 	quickSlash.damage = 10;
 	quickSlash.PP = 15;
 	quickSlash.numValue = 1;
-	allAttacks[quickSlash.numValue] = scratch;
+	allAttacks[quickSlash.numValue] = quickSlash;
+	allAttacks[2] = quickSlash;
+	allAttacks[3] = quickSlash;
 
 	return allAttacks;
 }

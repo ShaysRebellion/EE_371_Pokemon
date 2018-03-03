@@ -10,8 +10,10 @@ int receive();
 
 int attackCalculate(int attackDamage, int target);
 
-int updateHealth(int target); 
+int updateHealth(pokemon* target); 
 
 attack* defineAttacks();
+
+pokemon* definePokemon();
 
 #endif
