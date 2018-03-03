@@ -1,7 +1,7 @@
 #include "game_structs.h"
 
 int receive() {
-	while (!*CHAR_RECEIVED) { // Potential infinite loop
+	while (!*CHAR_RECEIVED) { // Potential infinite loop?
 		continue;
 	}
 
