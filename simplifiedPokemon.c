@@ -4,11 +4,11 @@
 #include <string.h>
 
 int main(){
-	attack allAttacks[NUMATTACKS];
-	defineAttacks(allAttacks);
-	pokemon allPokemon[NUMPOKEMON];
-	definePokemon(allAttacks, allPokemon);
+	attack* allAttacks;
+	allAttacks = defineAttacks();
+	pokemon* allPokemon;
+	allPokemon = definePokemon(allAttacks);
 	printf("%s\n", allPokemon[0].name);
-	printf("%s\n", allPokemon[0].attacks[0].damage);
+	printf("%s\n", allPokemon[0].attacks[0].name);
 	printf("%s\n", allAttacks[0].name);
 }

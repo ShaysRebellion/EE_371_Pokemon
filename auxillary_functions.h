@@ -12,8 +12,8 @@ int attackCalculate(int attackDamage, int target);
 
 int updateHealth(pokemon* target); 
 
-void defineAttacks(attack* allAttacks);
+attack* defineAttacks();
 
-void definePokemon(attack* allAttacks, pokemon* allPokemon);
+pokemon* definePokemon(attack* allAttacks);
 
 #endif
