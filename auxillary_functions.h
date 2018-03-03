@@ -2,18 +2,45 @@
 #ifndef AUXILLARY_FUNCTIONS
 #define AUXILLARY_FUNCTIONS
 
-int initialize();
+void send(char data) {
+	*PARALLEL_SEND = data;
+	*LOAD = 1;
+	*TRANSMIT = 1;
+	*LOAD = 0;
 
-void send(int data);
+	while (!*CHARSENT) { // Potential infinite loop?
+		continue;
+	}
 
-int receive();
+	*TRANSMIT = 0;
+}
 
-int attackCalculate(int attackDamage, int target);
 
-int updateHealth(pokemon* target); 
 
-attack* defineAttacks();
+int receive() {
+	while (!*CHAR_RECEIVED) { // Potential infinite loop?
+		continue;
+	}
 
-pokemon* definePokemon(attack* allAttacks);
+	return *PARALLEL_RECEIVE;
+}
+
+
+
+int attackCalculate(int attackDamage, int target) {
+
+};
+
+int updateHealth(pokemon* target) {
+
+};
+
+attack* defineAttacks() {
+
+};
+
+pokemon* definePokemon(attack* allAttacks) {
+
+};
 
 #endif

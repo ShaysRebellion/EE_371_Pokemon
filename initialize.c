@@ -1,3 +1,4 @@
-void initialize(){
+void initialize(pokemon* allPokemon) {
 	
+
 }
