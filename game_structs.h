@@ -14,15 +14,10 @@
 #define POKEMONPARTYSIZE 2
 #define GAME_STRUCTS
 
-enum myBool { FALSE = 0, TRUE = 1};
+enum myBool {false = 0, true = 1};
 typedef enum myBool bool;
 
-struct playerStruct{
-	pokemon* pokemonParty[POKEMONPARTYSIZE];
-	int whichPokemon;
-	// char command; ??
-	bool pokemonAlive;
-}; typedef struct playerStruct player;
+
 
 struct attackStruct{
 	char name[MAXATTACKNAMESIZE];
@@ -39,5 +34,13 @@ struct pokemonStruct{
 	int PP;
 	int numValue;
 }; typedef struct pokemonStruct pokemon;
+
+struct playerStruct{
+	pokemon pokemonParty[POKEMONPARTYSIZE];
+	int hp;
+	int whichPokemon;
+	// char command; ??
+	bool pokemonAlive;
+}; typedef struct playerStruct player;
 
 #endif
