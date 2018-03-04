@@ -2,9 +2,10 @@
 #ifndef AUXILLARY_FUNCTIONS
 #define AUXILLARY_FUNCTIONS
 
+
 void send(char data);
 
-int receive();
+char receive();
 
 void intializeConnection();
 
@@ -20,5 +21,9 @@ pokemon* definePokemon(attack* allAttacks);
 
 player definePlayer(pokemon* allPokemon, int pokemonOne, int pokemonTwo);
 
-player sendInfoToOppo(player*);
+player sendInfoToOppo(player*, pokemon*);
+
+bool attackMove(player* p, int whichPokemonAttacked, int whichAttack, attack* allAttacks, pokemon* allPokemon);
+
+
 #endif
