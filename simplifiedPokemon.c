@@ -17,9 +17,9 @@ int main() {
 
   	bool myTurn = rockPaperScissor();
 
-    bool gameOver = false;
-    bool win = false;
-  	while (!gameOver) {
+    bool gameOverForOpponent = false;
+    bool gameOverForMe = false;
+  	while (!gameOverForOpponent && !gameOverForMe) {
   		if (myTurn) {
         int usrCommand = getCommand(opponent, whoAmI);
         int processedCommand = processCommand(opponent, whoAmI, usrCommand);
@@ -30,10 +30,12 @@ int main() {
         processInformation(opponent, whoAmI, opponentInformation);
         myTurn = true;
       }
-      gameOver = checkGameOver(whoAmI);
+      gameOverForOpponent = checkGameOver(opponent);
+      gameOverForMe = checkGameOver(whoAmI);
+      if (gameOverForOpponent || gameOverForMe) {
+        handleGameOver(gameOverForOpponent, gameOverForMe);
+      }
     }
-
-    handleGameOver();
   }
 }
 

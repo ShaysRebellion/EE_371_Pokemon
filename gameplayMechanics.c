@@ -39,6 +39,7 @@ int processCommand(player* opponent, player* whoAmI, int usrCommand) {
     return 0;
   } else {
     int damage = calculateDamage(opponent, whoAmI, usrCommand);
+    updateHP(opponent, damage);
     return damage;
   }
 }
@@ -83,16 +84,24 @@ bool checkGameOver(player* whoAmI) {
   player thePlayer = *whoAmI;
   int pokemon1HP = thePlayer.pokemon1HP;
   int pokemon2HP = thePlayer.pokemon2HP;
-  int total = pokemon1HP + pokemon2HP;
-  if (total <= 0) {
+  int total1 = pokemon1HP + pokemon2HP;
+  if (total1 <= 0) {
     return true;
   } else {
     return false;
   }
 }
 
-void handleGameOver() {
-
+void handleGameOver(bool gameOverForOpponent, bool gameOverForMe) {
+  int wins = readSRAM(); // Needs address
+  int losses = readSRAM(); // Needs address
+  if (gameOverForOpponent) {
+    wins += 1;
+    writeSRAM(wins); // Needs address
+  } else {
+    losses += 1;
+    writeSRAM(losses); // Needs address
+  }
 }
 
 int readSRAM() {

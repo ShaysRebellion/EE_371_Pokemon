@@ -34,7 +34,7 @@ void updateHP(player* whoAmI, int opponentInformation);
 
 bool checkGameOver(player* whoAmI);
 
-void handleGameOver();
+void handleGameOver(bool gameOverForOpponent, bool gameOverForMe);
 
 int readSRAM();
 
