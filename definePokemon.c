@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 pokemon* definePokemon(attack* allAttacks){
-	static pokemon allPokemon[NUMPOKEMON];
+	static pokemon allPokemon[NUM_POKEMON];
 
 	pokemon charmander;
 	strcpy(charmander.name, "CHARMANDER");
@@ -12,9 +12,9 @@ pokemon* definePokemon(attack* allAttacks){
 	moveSet0[2] = allAttacks[6];
 	moveSet0[3] = allAttacks[7];
 	charmander.attacks = moveSet0;
-	charmander.health = 39;
+	charmander.hp = 39;
+	charmander.atk = 52;
 	charmander.def = 65;
-	charmander.PP = 10;
 	charmander.numValue = 0;
 	allPokemon[charmander.numValue] = charmander;
 
@@ -26,9 +26,9 @@ pokemon* definePokemon(attack* allAttacks){
 	moveSet1[2] = allAttacks[10];
 	moveSet1[3] = allAttacks[11];
 	squirtle.attacks = moveSet1;
-	squirtle.health = 44;
+	squirtle.hp = 44;
+	squirtle.atk = 48;
 	squirtle.def = 48;
-	squirtle.PP = 10;
 	squirtle.numValue = 1;
 	allPokemon[squirtle.numValue] = squirtle;
 
@@ -40,9 +40,9 @@ pokemon* definePokemon(attack* allAttacks){
 	moveSet2[2] = allAttacks[2];
 	moveSet2[3] = allAttacks[3];
 	bulbasaur.attacks = moveSet2;
-	bulbasaur.health = 45;
+	bulbasaur.hp = 45;
+	bulbasaur.atk = 49;
 	bulbasaur.def = 49;
-	bulbasaur.PP = 10;
 	bulbasaur.numValue = 2;
 	allPokemon[bulbasaur.numValue] = bulbasaur;
 
@@ -54,11 +54,11 @@ pokemon* definePokemon(attack* allAttacks){
 	moveSet3[2] = allAttacks[14];
 	moveSet3[3] = allAttacks[15];
 	pikachu.attacks = moveSet3;
-	pikachu.health = 35;
+	pikachu.hp = 35;
+	pikachu.atk = 55;
 	pikachu.def = 40;
-	pikachu.PP = 10;
 	pikachu.numValue = 3;
-	allPokemon[pikachu.numValue] = pikachu;	
+	allPokemon[pikachu.numValue] = pikachu;
 
 	pokemon eevee;
 	strcpy(eevee.name, "EEVEE");
@@ -68,9 +68,9 @@ pokemon* definePokemon(attack* allAttacks){
 	moveSet4[2] = allAttacks[18];
 	moveSet4[3] = allAttacks[19];
 	eevee.attacks = moveSet4;
-	eevee.health = 55;
+	eevee.hp = 55;
+	eevee.atk = 55;
 	eevee.def = 50;
-	eevee.PP = 10;
 	eevee.numValue = 4;
 	allPokemon[eevee.numValue] = eevee;
 
@@ -82,9 +82,9 @@ pokemon* definePokemon(attack* allAttacks){
 	moveSet5[2] = allAttacks[22];
 	moveSet5[3] = allAttacks[23];
 	chikorita.attacks = moveSet5;
-	chikorita.health = 45;
+	chikorita.hp = 45;
+	chikorita.atk = 49;
 	chikorita.def = 65;
-	chikorita.PP = 10;
 	chikorita.numValue = 5;
 	allPokemon[chikorita.numValue] = chikorita;
 
@@ -96,12 +96,11 @@ pokemon* definePokemon(attack* allAttacks){
 	moveSet6[2] = allAttacks[26];
 	moveSet6[3] = allAttacks[27];
 	cyndaquil.attacks = moveSet6;
-	cyndaquil.health = 39;
+	cyndaquil.hp = 39;
+	cyndaquil.atk = 52;
 	cyndaquil.def = 43;
-	cyndaquil.PP = 10;
 	cyndaquil.numValue = 5;
 	allPokemon[cyndaquil.numValue] = cyndaquil;
-
 
 	pokemon totodile;
 	strcpy(totodile.name, "TOTODILE");
@@ -111,19 +110,11 @@ pokemon* definePokemon(attack* allAttacks){
 	moveSet7[2] = allAttacks[30];
 	moveSet7[3] = allAttacks[31];
 	totodile.attacks = moveSet7;
-	totodile.health = 50;
+	totodile.hp = 50;
+	totodile.atk = 65;
 	totodile.def = 64;
-	totodile.PP = 10;
 	totodile.numValue = 6;
 	allPokemon[totodile.numValue] = totodile;
-
-
-
-
-
-
-
-
 
 	return allPokemon;
 }

@@ -1,4 +1,0 @@
-void initialize(pokemon* allPokemon) {
-	
-
-}

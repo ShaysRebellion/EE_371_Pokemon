@@ -1,3 +1,0 @@
-int updateHealth(pokemon* target){
-	
-}
