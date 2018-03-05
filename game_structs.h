@@ -7,10 +7,11 @@
 #define PARALLEL_RECEIVE (volatile char*) 0x00011010 // To change
 #define CHAR_RECEIVED (volatile char*) 0x00011010 // To change
 /* Constant Definitions */
-#define MAX_ATTACK_NAME_SIZE 100
-#define MAX_POKEMON_NAME_SIZE 100
 #define NUM_ATTACKS 50
 #define NUM_POKEMON 8
+#define MAX_ATTACK_NAME_SIZE 100
+#define MAX_POKEMON_NAME_SIZE 100
+#define POKEMON_PARTY_SIZE 2
 #define GAME_STRUCTS
 
 enum myBool {false = 0, true = 1};
@@ -32,7 +33,7 @@ struct pokemonStruct {
 }; typedef struct pokemonStruct pokemon;
 
 struct playerStruct {
-	pokemon* pokemonParty;
+	pokemon pokemonParty[POKEMON_PARTY_SIZE];
 	int whichPokemon;
 	int pokemon1HP;
 	int pokemon2HP;
