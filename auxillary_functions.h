@@ -36,9 +36,9 @@ bool checkGameOver(player* whoAmI);
 
 void handleGameOver(bool gameOverForOpponent, bool gameOverForMe);
 
-int readSRAM();
+int readSRAM(int sramAddress);
 
-void writeSRAM(int info);
+void writeSRAM(int sramAddress, int sramData);
 
 // bool attackMove(player* p, int whichPokemonAttacked, int whichAttack, attack* allAttacks, pokemon* allPokemon);
 #endif

@@ -93,25 +93,35 @@ bool checkGameOver(player* whoAmI) {
 }
 
 void handleGameOver(bool gameOverForOpponent, bool gameOverForMe) {
-  int wins = readSRAM(); // Needs address to read from SRAM
-  int losses = readSRAM(); // Needs address to read from SRAM
+  int sramAddressWins = 0;
+  int sramAddressLosses = 1;
+  int wins = readSRAM(sramAddressWins);
+  int losses = readSRAM(sramAddressLosses);
+
   if (gameOverForOpponent) {
     wins += 1;
-    writeSRAM(wins); // Needs address to write to SRAM
+    writeSRAM(sramAddressWins, wins); // Needs address to write to SRAM
   } else {
     losses += 1;
-    writeSRAM(losses); // Needs address to write to SRAM
+    writeSRAM(sramAddressLosses, losses); // Needs address to write to SRAM
   }
+
   alt_putstr("Wins: %d\n", wins);
   alt_putstr("Losses: %d\n", losses);
 }
 
-int readSRAM() {
-
+int readSRAM(int sramAddress) {
+  *ramControls = 2;
+  *address = sramAddress;
+  int sramData = *dataOut;
+  *ramControls = 1;
+  return sramData;
 }
 
-void writeSRAM(int info) {
-
+void writeSRAM(int sramAddress, int sramData) {
+  *ramControls = 4;
+  *dataIn = sramData;
+  *ramControls = 1;
 }
 
 /* // player p is under attack by pokemon[whichPokemonAttacked] with this attack[whichAttack]
