@@ -1,12 +1,12 @@
 #ifndef GAME_STRUCTS
-/* Memory Address Definitions for Serial Communications Peripheral */
+/* Serial communications peripheral memory addresses */
 #define PARALLEL_SEND (volatile char*) 0x00011020 // To change
 #define LOAD (volatile char*) 0x00011020 // To change
 #define TRANSMIT (volatile char*) 0x00011020 // To change
 #define CHAR_SENT (volatile char*) 0x00011010 // To change
 #define PARALLEL_RECEIVE (volatile char*) 0x00011010 // To change
 #define CHAR_RECEIVED (volatile char*) 0x00011010 // To change
-/* Memory Address Definitions for SRAM Peripheral */
+/* SRAM peripheral memory addresses */
 #define dataOut (char*) 0x00011050 // To change
 #define dataIn (char*) 0x00011040 // To change
 #define address (short*) 0x00011030 // To change
@@ -38,7 +38,7 @@ struct pokemonStruct {
 }; typedef struct pokemonStruct pokemon;
 
 struct playerStruct {
-	pokemon pokemonParty[POKEMON_PARTY_SIZE];
+	pokemon* pokemonParty;;
 	int whichPokemon;
 	int pokemon1HP;
 	int pokemon2HP;

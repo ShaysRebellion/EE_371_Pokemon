@@ -1,6 +1,7 @@
 #include "game_structs.h"
 #include <string.h>
 #include <stdio.h>
+
 pokemon* definePokemon(attack* allAttacks){
 	static pokemon allPokemon[NUM_POKEMON];
 

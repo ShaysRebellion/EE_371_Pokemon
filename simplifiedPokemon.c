@@ -1,9 +1,11 @@
-#include "game_structs.h"
-#include "auxillary_functions.h"
+// TO DO: CHECK NO REFERENCING ISSUES!!
+
 #include <stdio.h>
 #include <stdlib.h>
-// #include <altera_avalon_pio_regs.h>
-// #include <string.h>  // Do we need this?
+// #include <altera_avalon_pio_regs.h> // Uncomment later. Caused compiliation errors.
+#include "game_structs.h"
+#include "auxillary_functions.h"
+/* Import any additional necessary libraries here. */
 
 int main() {
   attack* allAttacks = defineAttacks();
@@ -13,7 +15,10 @@ int main() {
   	player* whoAmI;
   	whoAmI = definePlayer(allPokemon, rand() % 8, rand() % 8);
 
-  	player* opponent = sendInfoToOpponent(allPokemon, whoAmI);
+    // Maybe add function to check connection?
+
+    sendInfoToOpponent(whoAmI);
+    player* opponent = receiveInfoFromOpponent(allPokemon);
 
   	bool myTurn = rockPaperScissor();
 
@@ -38,37 +43,3 @@ int main() {
     }
   }
 }
-
-/*
-  while (1) {
-      send((char)whoAmI.pokemonParty[whoAmI.whichPokemon].attacks[whichAttack].numValue);
-      if (receive() == -2) { // Opponent received attack.
-        myturn = false;
-        gameover = attackMove(&rival, whoAmI.pokemonParty[whoAmI.whichPokemon].numValue, whoAmI.pokemonParty[whoAmI.whichPokemon].attacks[whichAttack].numValue, allAttacks, allPokemon);
-        if (gameover) {
-          alt_putstr("I won. I am so good.");
-          gameover = true;
-        }
-        break;
-      }
-    }
-  } else {
-    while (1) {
-      int received = receive();
-      if (received == -1) continue;
-      myturn = true;
-      int whichAttack = received;
-      gameover = attackMove(&whoAmI, rival.pokemonParty[rival.whichPokemon].numValue, rival.pokemonParty[rival.whichPokemon].attacks[whichAttack].numValue, allAttacks, allPokemon);
-      if (gameover) {
-        alt_putstr("I lost.");
-        gameover = true;
-      }
-      send(-2);
-      break;
-    }
-  }
-  if (gameover) {
-    break;
-  }
-}
-*/

@@ -5,7 +5,7 @@
 void send(char data) {
   *PARALLEL_SEND = data;
   *LOAD = 1;
-  *LOAD = 0; // Maybe too fast? Add delay?
+  *LOAD = 0;              // Maybe too fast? Add delay?
   *TRANSMIT = 1;
 
   while (!*CHAR_SENT) {
@@ -26,12 +26,14 @@ char receive() {
   return *PARALLEL_RECEIVE;
 }
 
-player* sendInfoToOpponent(pokemon* allPokemon, player* whoAmI) {
+void sendInfoToOpponent(player* whoAmI) {
   player thePlayer = *whoAmI;
   int pokemonOne = thePlayer.pokemonParty[0].numValue;
   int pokemonTwo = thePlayer.pokemonParty[1].numValue;
   send((pokemonOne << 3) + (pokemonTwo));
+}
 
+player* receiveInfoFromOpponent(pokemon* allPokemon) {
   player* opponent;
   int received = receive();
   int pokeOne = received & 0b00111000;
@@ -40,7 +42,6 @@ player* sendInfoToOpponent(pokemon* allPokemon, player* whoAmI) {
   return opponent;
 }
 
-// rock == 1  papper == 2  scissor == 3
 bool rockPaperScissor() {
   bool done = false;
   while (!done) {
@@ -54,7 +55,8 @@ bool rockPaperScissor() {
     send(myAnswer);
     int opponentAnswer = receive() - '0';
 
-    if (myAnswer == opponentAnswer) continue; // Automatically start process again.
+    if (myAnswer == opponentAnswer) continue;
+
     if (myAnswer < opponentAnswer) {
       return false;
     } else {

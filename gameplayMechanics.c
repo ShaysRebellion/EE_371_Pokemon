@@ -17,8 +17,8 @@ int getCommand(player* opponent, player* whoAmI) {
   validAnswer = false;
 
   while (!validAnswer) {
-    alt_putstr("Opponent Pokemon: %s, HP: %d\n", oppoPokemonName, oppoPokemonHP);
-    alt_putstr("Own Pokemon: %s, HP: %d\n", mePokemonName, mePokemonHP);
+    alt_putstr("Opponent Pokemon: %s, HP: %d\n", oppoPokemonName, oppoPokemonHP); // Will print entire string or just one char?
+    alt_putstr("Own Pokemon: %s, HP: %d\n", mePokemonName, mePokemonHP); // Will print entire string or just one char?
     alt_putstr("Switch: (0)\n");
     alt_putstr("Attack: \n %s (1) %s (2) \n %s (3) %s (4)\n", attack1, attack2, attack3, attack4);
 
@@ -67,6 +67,11 @@ int calculateDamage(player* opponent, player* whoAmI, int usrCommand) {
   return damage;
 }
 
+void updateHP(player* whoAmI, int opponentInformation) {
+  player thePlayer = *whoAmI;
+  thePlayer.whichHP -= opponentInformation;
+}
+
 void processInformation(player* opponent, player* whoAmI, int opponentInformation) {
   if (opponentInformation == 0) {
     switchPokemon(opponent);
@@ -75,17 +80,12 @@ void processInformation(player* opponent, player* whoAmI, int opponentInformatio
   }
 }
 
-void updateHP(player* whoAmI, int opponentInformation) {
-  player thePlayer = *whoAmI;
-  thePlayer.whichHP -= opponentInformation;
-}
-
 bool checkGameOver(player* whoAmI) {
   player thePlayer = *whoAmI;
   int pokemon1HP = thePlayer.pokemon1HP;
   int pokemon2HP = thePlayer.pokemon2HP;
-  int total1 = pokemon1HP + pokemon2HP;
-  if (total1 <= 0) {
+  int total = pokemon1HP + pokemon2HP;
+  if (total <= 0) {
     return true;
   } else {
     return false;
@@ -100,16 +100,17 @@ void handleGameOver(bool gameOverForOpponent, bool gameOverForMe) {
 
   if (gameOverForOpponent) {
     wins += 1;
-    writeSRAM(sramAddressWins, wins); // Needs address to write to SRAM
+    writeSRAM(sramAddressWins, wins);
   } else {
     losses += 1;
-    writeSRAM(sramAddressLosses, losses); // Needs address to write to SRAM
+    writeSRAM(sramAddressLosses, losses);
   }
 
   alt_putstr("Wins: %d\n", wins);
   alt_putstr("Losses: %d\n", losses);
 }
 
+// Will vary among groups depending on SRAM is connected.
 int readSRAM(int sramAddress) {
   *ramControls = 2;
   *address = sramAddress;
@@ -118,25 +119,9 @@ int readSRAM(int sramAddress) {
   return sramData;
 }
 
+// Will vary among groups depending on SRAM is connected.
 void writeSRAM(int sramAddress, int sramData) {
   *ramControls = 4;
   *dataIn = sramData;
   *ramControls = 1;
 }
-
-/* // player p is under attack by pokemon[whichPokemonAttacked] with this attack[whichAttack]
-bool attackMove(player* p, int whichPokemonAttacked, int whichAttack, attack* allAttacks, pokemon* allPokemon) {
-	p->hp -= allAttacks[whichAttack].damage;
-	printf("%s used %s dealt %d damage", allPokemon[whichPokemonAttacked].name, allAttacks[whichAttack].name, allAttacks[whichAttack].damage);
-	if (p->hp <= 0) {
-		alt_putstr("%s fainted\n", p->pokemonParty[p->whichPokemon].name);
-		p->whichPokemon += 1;
-		if (p->whichPokemon > 1) { // game over
-			return true;
-		} else { // switch pokemon
-			p->hp = p->pokemonParty[p->whichPokemon].health;
-			alt_putstr("%s is up\n", p->pokemonParty[p->whichPokemon].name);
-			return false;
-		}
-	}
-} */

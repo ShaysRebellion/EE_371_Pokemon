@@ -14,9 +14,9 @@ void send(char data);
 
 char receive();
 
-void checkConnection();
+void sendInfoToOpponent(player* whoAmI);
 
-player* sendInfoToOpponent(pokemon* allPokemon, player* whoAmI);
+player* receiveInfoFromOpponent(pokemon* allPokemon);
 
 bool rockPaperScissor();
 
@@ -40,5 +40,4 @@ int readSRAM(int sramAddress);
 
 void writeSRAM(int sramAddress, int sramData);
 
-// bool attackMove(player* p, int whichPokemonAttacked, int whichAttack, attack* allAttacks, pokemon* allPokemon);
 #endif

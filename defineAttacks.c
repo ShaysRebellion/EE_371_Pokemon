@@ -1,16 +1,13 @@
 #include "game_structs.h"
-#include <string.h>
 #include <stdio.h>
+#include <string.h>
+/* Import any additional necessary libraries. */
 
-//this function defines all of the attacks that will be in the game
-//as we develop the game further we can add more attacks and play with
-//the values. Follow this format to add an attack, and update NUMATTACKS
-//in game_structs.h as we add more attacks.
 attack* defineAttacks() {
 	static attack allAttacks[NUM_ATTACKS];
 
-	//***********************************************************
-	//Attacks for Bulbasaur
+	// ***********************************************************
+	// Attacks for Bulbasaur
 
 	attack tackle;
 	strcpy(tackle.name, "Tackle");
@@ -36,8 +33,8 @@ attack* defineAttacks() {
 	doubleEdge.numValue = 3;
 	allAttacks[doubleEdge.numValue] = doubleEdge;
 
-	//***********************************************************
-	//Attacks for Charmander
+	// ***********************************************************
+	// Attacks for Charmander
 
 	attack scratch;
 	strcpy(scratch.name, "SCRATCH");
@@ -63,9 +60,8 @@ attack* defineAttacks() {
 	fireSpin.numValue = 7;
 	allAttacks[fireSpin.numValue] = fireSpin;
 
-
-	//***********************************************************
-	//Attacks for Squirtle
+	// ***********************************************************
+	// Attacks for Squirtle
 
 	attack waterGun;
 	strcpy(waterGun.name, "Water Gun");
@@ -91,8 +87,8 @@ attack* defineAttacks() {
 	rapidSpin.numValue = 11;
 	allAttacks[rapidSpin.numValue] = rapidSpin;
 
-	//***********************************************************
-	//Attacks for Pikachu
+	// ***********************************************************
+	// Attacks for Pikachu
 
 	attack thunderShock;
 	strcpy(thunderShock.name, "Thunder Attack");
@@ -118,8 +114,8 @@ attack* defineAttacks() {
 	nuzzle.numValue = 15;
 	allAttacks[nuzzle.numValue] = nuzzle;
 
-	//***********************************************************
-	//Attacks for Eevee
+	// ***********************************************************
+	// Attacks for Eevee
 
 	attack covet;
 	strcpy(covet.name, "Covet");
@@ -145,8 +141,8 @@ attack* defineAttacks() {
 	shadowBall.numValue = 19;
 	allAttacks[shadowBall.numValue] = shadowBall;
 
-	//***********************************************************
-	//Attacks for Chikorita
+	// ***********************************************************
+	// Attacks for Chikorita
 
 	attack hiddenPower;
 	strcpy(hiddenPower.name, "Hidden Power");
@@ -172,8 +168,8 @@ attack* defineAttacks() {
 	solarBeam.numValue = 23;
 	allAttacks[solarBeam.numValue] = solarBeam;
 
-	//***********************************************************
-	//Attacks for Cyndaquil
+	// ***********************************************************
+	// Attacks for Cyndaquil
 
 	attack flameWheel;
 	strcpy(flameWheel.name, "Flame Wheel");
@@ -199,8 +195,8 @@ attack* defineAttacks() {
 	eruption.numValue = 27;
 	allAttacks[eruption.numValue] = eruption;
 
-	//***********************************************************
-	//Attacks for Totodile
+	// ***********************************************************
+	// Attacks for Totodile
 
 	attack rage;
 	strcpy(rage.name, "Rage");
