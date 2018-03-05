@@ -25,7 +25,7 @@ int getCommand(player* opponent, player* whoAmI) {
     int command = atl_getchar() - '0';
 
     if (command < 0 || command > 4) {
-      printf("Please enter a valid command!");
+      alt_putstr("Please enter a valid command!");
       continue;
     }
 
@@ -93,15 +93,17 @@ bool checkGameOver(player* whoAmI) {
 }
 
 void handleGameOver(bool gameOverForOpponent, bool gameOverForMe) {
-  int wins = readSRAM(); // Needs address
-  int losses = readSRAM(); // Needs address
+  int wins = readSRAM(); // Needs address to read from SRAM
+  int losses = readSRAM(); // Needs address to read from SRAM
   if (gameOverForOpponent) {
     wins += 1;
-    writeSRAM(wins); // Needs address
+    writeSRAM(wins); // Needs address to write to SRAM
   } else {
     losses += 1;
-    writeSRAM(losses); // Needs address
+    writeSRAM(losses); // Needs address to write to SRAM
   }
+  alt_putstr("Wins: %d\n", wins);
+  alt_putstr("Losses: %d\n", losses);
 }
 
 int readSRAM() {

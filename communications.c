@@ -47,7 +47,7 @@ bool rockPaperScissor() {
     alt_putstr("Rock Paper Scissor! (Rock = 1,  Paper = 2,  Scissor = 3)");
     int myAnswer = alt_getchar() - '0';
     if (myAnswer < 1 || myAnswer > 3) {
-      printf("Please enter a valid answer! (Rock = 1,  Paper = 2,  Scissor = 3)");
+      alt_putstr("Please enter a valid answer! (Rock = 1,  Paper = 2,  Scissor = 3)");
       continue;
     }
 
