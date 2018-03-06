@@ -42,10 +42,8 @@ void sendInfoToOpponent(player* whoAmI) {
 
 void receiveInfoFromOpponent(player *oppo, pokemon* allPokemon) {
   int received = receive();
-  printf("OPPO pokemon???: %x, \n", received);
   int pokeOne = (received & 0b111000) >> 3;
   int pokeTwo = received & 0b111;
-  printf("OPPO pokemon: %d, %d\n", pokeOne, pokeTwo);
   definePlayerOppo(oppo, allPokemon, pokeOne, pokeTwo);
 }
 

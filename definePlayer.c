@@ -11,7 +11,6 @@ void definePlayerMe(player* whoAmI, pokemon* allPokemon, int pokemonOne, int pok
   whoAmI->pokemon1HP = allPokemon[pokemonOne].hp;
   whoAmI->pokemon2HP = allPokemon[pokemonTwo].hp;
   /* Determine which HP to subtract from when Pokemon takes damage. */
-  whoAmI->whichHP = whoAmI->pokemon1HP;
 
 }
 
@@ -27,6 +26,5 @@ void definePlayerOppo(player* whoAmI, pokemon* allPokemon, int pokemonOne, int p
   whoAmI->pokemon1HP = allPokemon[pokemonOne].hp;
   whoAmI->pokemon2HP = allPokemon[pokemonTwo].hp;
   /* Determine which HP to subtract from when Pokemon takes damage. */
-  whoAmI->whichHP = whoAmI->pokemon1HP;
 
 }

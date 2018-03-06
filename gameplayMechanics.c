@@ -1,4 +1,5 @@
 #include "auxillary_functions.h"
+#include <ctype.h>
 
 int getCommand(player* opponent, player* whoAmI) {
   player oppo = *opponent;
@@ -6,8 +7,8 @@ int getCommand(player* opponent, player* whoAmI) {
 
   char* oppoPokemonName = oppo.pokemonParty[oppo.whichPokemon].name;
   char* mePokemonName = me.pokemonParty[me.whichPokemon].name;
-  int oppoPokemonHP = oppo.whichHP;
-  int mePokemonHP = me.whichHP;
+  int oppoPokemonHP = (oppo.whichPokemon == 0) ? oppo.pokemon1HP : oppo.pokemon2HP;
+  int mePokemonHP = (me.whichPokemon == 0) ? me.pokemon1HP : me.pokemon2HP;
   char* attack1 = me.pokemonParty[me.whichPokemon].attacks[0].name;
   char* attack2 = me.pokemonParty[me.whichPokemon].attacks[1].name;
   char* attack3 = me.pokemonParty[me.whichPokemon].attacks[2].name;
@@ -22,7 +23,12 @@ int getCommand(player* opponent, player* whoAmI) {
     printf("Switch: (0)\n");
     printf("Attack: \n %s (1) %s (2) \n %s (3) %s (4)\n", attack1, attack2, attack3, attack4);
 
-    int command = getchar() - '0';
+    int command;
+    
+    do
+      command = getchar();
+    while(isspace(command));
+    command -= '0';
 
     if (command < 0 || command > 4) {
       printf("Please enter a valid command!\n");
@@ -50,14 +56,10 @@ int processCommand(player* opponent, player* whoAmI, int usrCommand) {
 }
 
 void switchPokemon(player* whoAmI) {
-  player thePlayer = *whoAmI;
-  int pokemon = thePlayer.whichPokemon;
-  if (pokemon == 0) {
-    thePlayer.whichPokemon = 1;
-    thePlayer.whichHP = thePlayer.pokemon1HP;
+  if (whoAmI->whichPokemon == 0) {
+    whoAmI->whichPokemon = 1;
   } else {
-    thePlayer.whichPokemon = 0;
-    thePlayer.whichHP = thePlayer.pokemon2HP;
+    whoAmI->whichPokemon = 0;
   }
 }
 
@@ -68,14 +70,27 @@ int calculateDamage(player* opponent, player* whoAmI, int usrCommand) {
   int atkStat = me.pokemonParty[me.whichPokemon].attacks[atkIndex].power;
   int defStat = oppo.pokemonParty[oppo.whichPokemon].def;
   int damage;
-  damage = (int) ((atkStat - defStat) / 2);
+  damage = (int) (atkStat - defStat/10);
+  if (damage < 0) {
+    damage = 0;
+  }
+  printf("damage %d\n", damage);
   return damage;
 }
 
-void updateHP(player* whoAmI, int opponentInformation) {
-  whoAmI->whichHP -= opponentInformation;
-  if (whoAmI->whichHP < 0) {
-    whoAmI->whichHP = 0;
+void updateHP(player* whoAmI, int damage) {
+  if (whoAmI->whichPokemon == 1) {
+    whoAmI->pokemon2HP -= damage;
+    if (whoAmI->pokemon2HP < 0) {
+      whoAmI->pokemon2HP = 0;
+      switchPokemon(whoAmI);
+    }
+  } else {
+    whoAmI->pokemon1HP -= damage;
+    if (whoAmI->pokemon1HP < 0) {
+      whoAmI->pokemon1HP = 0;
+      switchPokemon(whoAmI);
+    }
   }
 }
 
@@ -116,9 +131,10 @@ void handleGameOver(bool gameOverForOpponent, bool gameOverForMe) {
   // printf("Wins: %d\n", wins);
   // printf("Losses: %d\n", losses);
   if (gameOverForOpponent) {
-    printf("Player won.");
+    printf("\n\n\n\nPlayer won.\n\n\n\n\n");
+    
   } else {
-    printf("Opponent won.");
+    printf("\n\n\n\n\nOpponent won.\n\n\n\n\n");
   }
 }
 
@@ -137,3 +153,4 @@ void writeSRAM(int sramAddress, int sramData) {
   *dataIn = sramData;
   *ramControls = 1;
 } */
+

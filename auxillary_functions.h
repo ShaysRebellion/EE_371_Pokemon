@@ -42,4 +42,6 @@ int readSRAM(int sramAddress);
 
 void writeSRAM(int sramAddress, int sramData);
 
+void printPlayer(player * player);
+
 #endif
