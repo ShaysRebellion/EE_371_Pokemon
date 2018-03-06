@@ -18,13 +18,13 @@ int getCommand(player* opponent, player* whoAmI) {
   validAnswer = false;
 
   while (!validAnswer) {
-    printf("Opponent Pokemon: %s, HP: %d\n", oppoPokemonName, oppoPokemonHP); // Will print entire string or just one char?
-    printf("Own Pokemon: %s, HP: %d\n", mePokemonName, mePokemonHP); // Will print entire string or just one char?
+    printf("Opponent Pokemon: %s, HP: %d\n", oppoPokemonName, oppoPokemonHP);
+    printf("Own Pokemon: %s, HP: %d\n", mePokemonName, mePokemonHP);
     printf("Switch: (0)\n");
     printf("Attack: \n %s (1) %s (2) \n %s (3) %s (4)\n", attack1, attack2, attack3, attack4);
 
     int command;
-    
+
     do
       command = getchar();
     while(isspace(command));
@@ -74,7 +74,7 @@ int calculateDamage(player* opponent, player* whoAmI, int usrCommand) {
   if (damage < 0) {
     damage = 0;
   }
-  printf("damage %d\n", damage);
+  // printf("damage %d\n", damage);
   return damage;
 }
 
@@ -115,30 +115,30 @@ bool checkGameOver(player* whoAmI) {
 }
 
 void handleGameOver(bool gameOverForOpponent, bool gameOverForMe) {
-  // int sramAddressWins = 0;
-  // int sramAddressLosses = 1;
-  // int wins = readSRAM(sramAddressWins);
-  // int losses = readSRAM(sramAddressLosses);
-  //
-  // if (gameOverForOpponent) {
-  //   wins += 1;
-  //   writeSRAM(sramAddressWins, wins);
-  // } else {
-  //   losses += 1;
-  //   writeSRAM(sramAddressLosses, losses);
-  // }
-  //
-  // printf("Wins: %d\n", wins);
-  // printf("Losses: %d\n", losses);
+  int sramAddressWins = 0;
+  int sramAddressLosses = 1;
+  int wins = readSRAM(sramAddressWins);
+  int losses = readSRAM(sramAddressLosses);
+
   if (gameOverForOpponent) {
+    wins += 1;
+    writeSRAM(sramAddressWins, wins);
+  } else {
+    losses += 1;
+    writeSRAM(sramAddressLosses, losses);
+  }
+
+  printf("Wins: %d\n", wins);
+  printf("Losses: %d\n", losses);
+
+  /* if (gameOverForOpponent) {
     printf("\n\n\n\nPlayer won.\n\n\n\n\n");
-    
+
   } else {
     printf("\n\n\n\n\nOpponent won.\n\n\n\n\n");
-  }
+  } */
 }
 
-/* Will vary among groups depending on SRAM is connected.
 int readSRAM(int sramAddress) {
   *ramControls = 2;
   *address = sramAddress;
@@ -147,10 +147,8 @@ int readSRAM(int sramAddress) {
   return sramData;
 }
 
-// Will vary among groups depending on SRAM is connected.
 void writeSRAM(int sramAddress, int sramData) {
   *ramControls = 4;
   *dataIn = sramData;
   *ramControls = 1;
-} */
-
+}

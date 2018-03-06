@@ -1,48 +1,43 @@
-// TO DO: CHECK NO REFERENCING ISSUES!!
-
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 // #include <altera_avalon_pio_regs.h> // Uncomment later. Caused compiliation errors.
 #include "game_structs.h"
 #include "auxillary_functions.h"
 /* Import any additional necessary libraries here. */
 
-void printPokemon(pokemon * poke) {
+/* void printPokemon(pokemon * poke) {
   char * name = poke->name;
   printf("pokemon name: %s\n", name);
+} */
 
-} 
-
-void printPlayer(player * player) {
+/* void printPlayer(player * player) {
   printPokemon(&(player->pokemonParty[0]));
   printf("pokemon hp: %d\n", player->pokemon1HP);
   printPokemon(&(player->pokemonParty[1]));
   printf("pokemon hp: %d\n", player->pokemon2HP);
   printf("which pokemon: %d\n", player->whichPokemon);
-}
-
-
+} */
 
 int main() {
   attack* allAttacks = defineAttacks();
   pokemon* allPokemon = definePokemon(allAttacks);
 
-  
   while (1) {
     player me;
   	player* whoAmI = &me;
+    srand(time(NULL));
     int ran1 = rand() % 8;
     int ran2 = rand() % 8;
-    printf("ran1 %d, rand2 %d\n", ran1, ran2);
+    // printf("ran1 %d, rand2 %d\n", ran1, ran2);
   	definePlayerMe(whoAmI, allPokemon, ran1, ran2);
-    printPlayer(whoAmI);
-    // Maybe add function to check connection?
+    // printPlayer(whoAmI);
 
     sendInfoToOpponent(whoAmI);
     player oppo;
     player* opponent = & oppo;
     receiveInfoFromOpponent(opponent, allPokemon);
-    printPlayer(opponent);
+    // printPlayer(opponent);
 
   	bool myTurn = rockPaperScissor();
 
@@ -51,11 +46,11 @@ int main() {
 
     int round = 1;
   	while (!gameOverForOpponent && !gameOverForMe) {
-      printf("round %d \n", round);
+      /* printf("round %d \n", round);
       printf("me\n");
       printPlayer(whoAmI);
       printf("oppo\n");
-      printPlayer(opponent);
+      printPlayer(opponent); */
 
   		if (myTurn) {
         int usrCommand = getCommand(opponent, whoAmI);

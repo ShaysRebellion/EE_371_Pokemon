@@ -4,33 +4,34 @@
 #include <ctype.h>
 
 void send(char data) {
-  // *PARALLEL_SEND = data;
-  // *LOAD = 1;
-  // *LOAD = 0;              // Maybe too fast? Add delay?
-  // *TRANSMIT = 1;
-  //
-  // while (!(*CHAR_SENT & 0b1)) {
-  // 	continue;
-  // }
-  //
-  // *TRANSMIT = 0;
+  *PARALLEL_SEND = data;
+  *LOAD = 1;
+  *LOAD = 0;
+  *TRANSMIT = 1;
+
+  while (!(*CHAR_SENT & 0b1)) {
+  	continue;
+  }
+
+  *TRANSMIT = 0;
 }
 
 char receive() {
-  // bool received;
-  // received = false;
-  // while (!received) {
-  //   if ((*CHAR_RECEIVED & 0b1)) {
-  //       received = true;
-  //   }
-  // }
-  // return *PARALLEL_RECEIVE;
-  printf("OPPO INPUT:\n");
+  bool received;
+  received = false;
+  while (!received) {
+    if ((*CHAR_RECEIVED & 0b1)) {
+        received = true;
+    }
+  }
+  return *PARALLEL_RECEIVE;
+
+  /* printf("OPPO INPUT:\n");
   int myAnswer;
   do
     myAnswer = getchar();
   while(isspace(myAnswer));
-  return  myAnswer - '0';
+  return  myAnswer - '0'; */
 }
 
 void sendInfoToOpponent(player* whoAmI) {
