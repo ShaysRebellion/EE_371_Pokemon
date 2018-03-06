@@ -8,7 +8,9 @@ attack* defineAttacks();
 
 pokemon* definePokemon(attack* allAttacks);
 
-player* definePlayer(pokemon* allPokemon, int pokemonOne, int pokemonTwo);
+void definePlayerMe(player* whoAmI, pokemon* allPokemon, int pokemonOne, int pokemonTwo);
+
+void definePlayerOppo(player* whoAmI, pokemon* allPokemon, int pokemonOne, int pokemonTwo);
 
 void send(char data);
 
@@ -16,7 +18,7 @@ char receive();
 
 void sendInfoToOpponent(player* whoAmI);
 
-player* receiveInfoFromOpponent(pokemon* allPokemon);
+void receiveInfoFromOpponent(player *, pokemon* allPokemon);
 
 bool rockPaperScissor();
 

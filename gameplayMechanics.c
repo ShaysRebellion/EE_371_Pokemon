@@ -17,15 +17,20 @@ int getCommand(player* opponent, player* whoAmI) {
   validAnswer = false;
 
   while (!validAnswer) {
-    alt_putstr("Opponent Pokemon: %s, HP: %d\n", oppoPokemonName, oppoPokemonHP); // Will print entire string or just one char?
-    alt_putstr("Own Pokemon: %s, HP: %d\n", mePokemonName, mePokemonHP); // Will print entire string or just one char?
-    alt_putstr("Switch: (0)\n");
-    alt_putstr("Attack: \n %s (1) %s (2) \n %s (3) %s (4)\n", attack1, attack2, attack3, attack4);
+    printf("Opponent Pokemon: %s, HP: %d\n", oppoPokemonName, oppoPokemonHP); // Will print entire string or just one char?
+    printf("Own Pokemon: %s, HP: %d\n", mePokemonName, mePokemonHP); // Will print entire string or just one char?
+    printf("Switch: (0)\n");
+    printf("Attack: \n %s (1) %s (2) \n %s (3) %s (4)\n", attack1, attack2, attack3, attack4);
 
-    int command = atl_getchar() - '0';
+    int command = getchar() - '0';
 
     if (command < 0 || command > 4) {
-      alt_putstr("Please enter a valid command!");
+      printf("Please enter a valid command!\n");
+      continue;
+    }
+
+    if (me.whichPokemon == 0 && me.pokemonParty[1].hp <= 0 || me.whichPokemon == 1 && me.pokemonParty[0].hp <= 0) {
+      printf("%s already fainted. Unable to battle!\n", me.pokemonParty[me.whichPokemon].name);
       continue;
     }
 
@@ -68,8 +73,10 @@ int calculateDamage(player* opponent, player* whoAmI, int usrCommand) {
 }
 
 void updateHP(player* whoAmI, int opponentInformation) {
-  player thePlayer = *whoAmI;
-  thePlayer.whichHP -= opponentInformation;
+  whoAmI->whichHP -= opponentInformation;
+  if (whoAmI->whichHP < 0) {
+    whoAmI->whichHP = 0;
+  }
 }
 
 void processInformation(player* opponent, player* whoAmI, int opponentInformation) {
@@ -93,24 +100,29 @@ bool checkGameOver(player* whoAmI) {
 }
 
 void handleGameOver(bool gameOverForOpponent, bool gameOverForMe) {
-  int sramAddressWins = 0;
-  int sramAddressLosses = 1;
-  int wins = readSRAM(sramAddressWins);
-  int losses = readSRAM(sramAddressLosses);
-
+  // int sramAddressWins = 0;
+  // int sramAddressLosses = 1;
+  // int wins = readSRAM(sramAddressWins);
+  // int losses = readSRAM(sramAddressLosses);
+  //
+  // if (gameOverForOpponent) {
+  //   wins += 1;
+  //   writeSRAM(sramAddressWins, wins);
+  // } else {
+  //   losses += 1;
+  //   writeSRAM(sramAddressLosses, losses);
+  // }
+  //
+  // printf("Wins: %d\n", wins);
+  // printf("Losses: %d\n", losses);
   if (gameOverForOpponent) {
-    wins += 1;
-    writeSRAM(sramAddressWins, wins);
+    printf("Player won.");
   } else {
-    losses += 1;
-    writeSRAM(sramAddressLosses, losses);
+    printf("Opponent won.");
   }
-
-  alt_putstr("Wins: %d\n", wins);
-  alt_putstr("Losses: %d\n", losses);
 }
 
-// Will vary among groups depending on SRAM is connected.
+/* Will vary among groups depending on SRAM is connected.
 int readSRAM(int sramAddress) {
   *ramControls = 2;
   *address = sramAddress;
@@ -124,4 +136,4 @@ void writeSRAM(int sramAddress, int sramData) {
   *ramControls = 4;
   *dataIn = sramData;
   *ramControls = 1;
-}
+} */

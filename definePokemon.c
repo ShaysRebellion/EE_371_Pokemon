@@ -100,7 +100,7 @@ pokemon* definePokemon(attack* allAttacks){
 	cyndaquil.hp = 39;
 	cyndaquil.atk = 52;
 	cyndaquil.def = 43;
-	cyndaquil.numValue = 5;
+	cyndaquil.numValue = 6;
 	allPokemon[cyndaquil.numValue] = cyndaquil;
 
 	pokemon totodile;
@@ -114,7 +114,7 @@ pokemon* definePokemon(attack* allAttacks){
 	totodile.hp = 50;
 	totodile.atk = 65;
 	totodile.def = 64;
-	totodile.numValue = 6;
+	totodile.numValue = 7;
 	allPokemon[totodile.numValue] = totodile;
 
 	return allPokemon;

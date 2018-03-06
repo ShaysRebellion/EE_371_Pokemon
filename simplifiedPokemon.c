@@ -12,13 +12,19 @@ int main() {
   pokemon* allPokemon = definePokemon(allAttacks);
 
   while (1) {
-  	player* whoAmI;
-  	whoAmI = definePlayer(allPokemon, rand() % 8, rand() % 8);
+    player me;
+  	player* whoAmI = &me;
+    int ran1 = rand() % 8;
+    int ran2 = rand() % 8;
+    printf("ran1 %d, rand2 %d\n", ran1, ran2);
+  	 definePlayerMe(whoAmI, allPokemon, ran1, ran2);
 
     // Maybe add function to check connection?
 
     sendInfoToOpponent(whoAmI);
-    player* opponent = receiveInfoFromOpponent(allPokemon);
+    player oppo;
+    player* opponent = & oppo;
+    receiveInfoFromOpponent(opponent, allPokemon);
 
   	bool myTurn = rockPaperScissor();
 
